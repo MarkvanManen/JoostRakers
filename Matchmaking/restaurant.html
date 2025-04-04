@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CozyTables - Restaurants</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF5E1;
+            color: #5A3E36;
+            text-align: center;
+            padding: 20px;
+        }
+        .restaurant-list {
+            margin-top: 20px;
+        }
+        .restaurant {
+    display: block;
+    background-color: #FAD2A5;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 400px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: #5A3E36;
+    font-weight: bold;
+}
+.restaurant:hover {
+    background-color: #f7b974;
+}
+
+    </style>
+</head>
+<body>
+<h1>You've matched with <span id="match-name"></span>!</h1>
+<img id="match-img" src="" alt="Matched Profile" style="max-width:300px; border-radius:10px; margin-top:10px;">
+<h2>Cozy Restaurants in <span id="match-city"></span>:</h2>
+<div class="restaurant-list" id="restaurant-list"></div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("match");
+    const img = params.get("img");
+    const city = params.get("city");
+
+    document.getElementById("match-name").textContent = name;
+    document.getElementById("match-img").src = img;
+    document.getElementById("match-city").textContent = city;
+
+    // Sample restaurant data
+    const restaurantData = {
+        "Den Haag": ["Calla's", "Villa Coucou", "Elea"],
+        "Scheveningen": ["Klein Zwitserland", "De Dagvisser", "Simonis aan de Haven"],
+        "Rotterdam": ["FG Restaurant", "Parkheuvel", "Joelia"],
+        "Den Haag": ["Calla's", "Villa Coucou", "Elea"],
+        "Amsterdam": ["Flore", "Ciel Bleu", "De Kas"],
+        "Utrecht": ["Hemel & Aarde", "Karel V", "Goesting"],
+        "Zwolle": ["De Librije", "De Groene Lantaarn", "Restaurant 1487"],
+        "Maastricht": ["Beluga Loves You", "Tout à Fait", "Novo New Dining"],
+        "Groningen": ["Nassau", "Rooftop Merckt", "Noor"],
+        "Haarlem": ["Ratatouille Food & Wine", "ML", "Le Mortier"]
+    };
+
+    // Populate restaurant list
+    const listEl = document.getElementById("restaurant-list");
+    const restaurants = restaurantData[city] || ["No restaurants available for this city."];
+
+  restaurants.forEach(rName => {
+    const link = document.createElement("a");
+    link.className = "restaurant";
+    link.href = `booking.html?restaurant=${encodeURIComponent(rName)}&match=${encodeURIComponent(name)}&img=${encodeURIComponent(img)}`;
+    link.textContent = rName;
+    listEl.appendChild(link);
+});
+</script>
+</body>
+</html>

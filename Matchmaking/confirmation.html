@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CozyTables - Reservation Confirmed</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #FFF5E1;
+        color: #5A3E36;
+        text-align: center;
+        padding: 20px;
+    }
+    .confirmation-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #FAE5D3;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    img {
+        max-width: 220px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+    h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    .details {
+        font-size: 1.1em;
+        margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="confirmation-container">
+  <h2>🎉 Reservation Confirmed!</h2>
+  <img id="match-img" src="" alt="Match Image">
+  <p class="details"><strong>You're dining with:</strong> <span id="match-name"></span></p>
+  <p class="details"><strong>Restaurant:</strong> <span id="restaurant-name"></span></p>
+  <p class="details"><strong>Date:</strong> <span id="booking-date"></span></p>
+  <p class="details"><strong>Time:</strong> <span id="booking-time"></span></p>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById("match-name").textContent = params.get("match");
+  document.getElementById("restaurant-name").textContent = params.get("restaurant");
+  document.getElementById("booking-date").textContent = params.get("date");
+  document.getElementById("booking-time").textContent = params.get("time");
+  document.getElementById("match-img").src = params.get("img");
+</script>
+</body>
+</html>
