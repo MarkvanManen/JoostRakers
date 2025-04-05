@@ -162,21 +162,20 @@
 </footer>
 
 <script>
-  // JavaScript to handle profile picture preview
-  function previewProfilePic(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  document.getElementById("profileForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Stop the default POST
 
-    reader.onload = function(e) {
-      const imgElement = document.getElementById('profilePicPreview');
-      imgElement.src = e.target.result;
-      imgElement.style.display = 'block';
-    };
+    // Grab form values
+    const fullName = document.getElementById("fullName").value;
+    const city = document.getElementById("city").value;
+    const age = document.getElementById("age").value;
 
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
+    // For example purposes, show a confirmation
+    // alert(`Thanks, ${fullName}! We'll find matches for you in ${city}.`);
+
+    // You could also redirect here if needed
+    window.location.href = "home.html";
+  });
 </script>
 
 </body>
